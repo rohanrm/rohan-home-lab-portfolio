@@ -37,7 +37,7 @@ The immediate release priority is:
 | Samba systemd automount | Operational | Docker VM can access approved NAS media |
 | Version 3 public documentation | Operational | Sanitized structure and current records completed |
 | Documentation release controls | Operational | Audit, workflow, policies, and release procedures completed |
-| Clean-history employer publication | Planned | New public repository not yet created |
+| Clean-history employer publication | Operational | Sanitized repository published with a fresh Git history |
 | Private operational documentation | In Progress | Exact values and recovery records maintained separately |
 | Jellyfin | In Progress | Platform and storage prerequisites ready; application deployment incomplete |
 | Immich | Planned | Begins after Jellyfin is stable |
@@ -146,36 +146,29 @@ The immediate release priority is:
 
 ## Milestone 7 — Clean-History Employer Publication
 
-**Status:** Planned
+**Status:** Operational
 
-### Entry Conditions
+### Outcomes
 
-- Public Batch 9 committed and pushed
-- Development branch clean
-- Local documentation audit passes
-- GitHub Actions audit passes
-- Publication checklist reviewed
-- New empty public repository created
-
-### Planned Outcomes
-
-- Export tracked Version 3 files
-- Audit the export
-- Initialize a new Git repository
-- Create one clean publication commit
-- Push to the new employer-facing repository
-- Confirm repository visibility
-- Confirm remote workflow passes
-- Complete the release-validation record
+- Tracked Version 3 files exported without the development `.git` directory
+- Export audited before Git initialization
+- Fresh `main` branch initialized
+- Clean publication commit created
+- New employer-facing repository published
+- Development history excluded
+- Repository visibility confirmed
+- Documentation audit workflow passed
+- README and Mermaid rendering reviewed
+- Release-validation record completed
 
 ### Completion Criteria
 
-- New public repository contains only sanitized Version 3 content.
-- Commit history begins with the clean publication commit.
+- Public repository begins with the sanitized publication commit.
 - No development commits appear.
 - No private or legacy files appear.
-- GitHub Actions audit passes.
-- Repository release validation passes.
+- Local and remote audits pass.
+- Repository visibility is public.
+- Release evidence is recorded.
 
 ## Milestone 8 — Jellyfin
 

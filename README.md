@@ -2,7 +2,7 @@
 
 A staged home-lab project focused on Linux administration, virtualization, network services, containerized applications, storage, validation, and maintainable technical documentation.
 
-> **Repository status:** The Version 3 documentation and release-hardening structure are complete. The current technical focus is completing and validating the Jellyfin deployment. Clean-history employer-facing publication remains planned.
+> **Repository status:** The Version 3 documentation and release-hardening structure are complete. A clean-history employer-facing repository has been published and validated. The current technical focus is completing and validating the Jellyfin deployment.
 
 ## Project Goals
 

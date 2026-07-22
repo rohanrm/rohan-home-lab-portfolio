@@ -27,6 +27,29 @@ A changelog entry is not required for every wording, formatting, or link correct
 
 ## Milestones
 
+### 2026-07-22 — Clean-History Employer Publication Completed
+
+**Status:** Completed
+
+Published the sanitized Version 3 documentation through a fresh Git history.
+
+Validated:
+
+- Public repository begins with the clean publication commit
+- Development history is absent
+- Version 2 legacy files are absent
+- Repository documentation audit passes
+- GitHub Actions documentation workflow passes
+- Repository visibility is public
+- Root README and Mermaid diagrams render correctly
+- Release validation is recorded
+
+Public portfolio repository:
+
+```text
+https://github.com/rohanrm/rohan-home-lab-portfolio
+```
+
 ### 2026-07-22 — Public Batch 9: Release Hardening
 
 **Status:** Completed
