@@ -1,0 +1,10 @@
+This is a test
+/public-repo-baseline.txt
+/public-repo-baseline.tar.gz
+/private-repo-baseline.txt
+*.local.md
+/.local/
+/.publication-work/
+/public-release-export.tar
+/public-release-export.tar.gz
+/public-release-validation.txt

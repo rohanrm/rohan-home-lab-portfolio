@@ -1,0 +1,38 @@
+name: Documentation audit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - docs-v3-redesign
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Validate public documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Run Version 3 audit
+        run: python3 tools/audit-v3.py .
+
+      - name: Validate Markdown configuration
+        run: python3 -m json.tool .markdownlint.json >/dev/null
+
+      - name: Check trailing whitespace
+        shell: bash
+        run: |
+          if git grep -nI -E '[[:blank:]]+$' -- \
+            '*.md' '*.yml' '*.yaml' '*.json' '*.py' '*.sh'; then
+            echo "Trailing whitespace detected."
+            exit 1
+          fi
