@@ -35,3 +35,9 @@ The July record documented a clean-history employer-facing publication. That his
 ## Acceptance limits
 
 Fresh backup ages are not restoration proof. Host GPU availability is not transcoding proof. A short storage check is not long-term stability proof. Snapshot import is not continuous collection. See [V4 evidence](../validation/v4-baseline.md) for runtime observations and open checks.
+
+## Initial V4 remote verification — 2026-10-02
+
+The public V4 commit `9db3fb6ea8be5d0e06fa8eab939dfdc0e48fa483` was published with the portfolio's own prior public commit as its sole parent. All 70 remote file blobs matched the locally audited tree; no `private/` directory was present. The [GitHub Actions documentation audit](https://github.com/rohanrm/rohan-home-lab-portfolio/actions/runs/37041324655) completed successfully for that commit.
+
+The [draft publication pull request](https://github.com/rohanrm/rohan-home-lab-portfolio/pull/1) targets `main`. Creating the V4 branch and draft does not replace the current default-branch landing page; main changes only after merge. The private blueprint's separate audit also passed, and its companion directory was confirmed absent publicly. This record documents that initial published commit rather than claiming tests on any later revision.
