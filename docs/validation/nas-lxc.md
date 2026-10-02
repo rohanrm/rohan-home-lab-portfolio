@@ -1,8 +1,10 @@
 # NAS LXC Validation
 
+> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](v4-baseline.md) for later changes and open checks.
+
 | Field | Value |
 |---|---|
-| Document status | Current |
+| Document status | Archived |
 | Validation status | Passed |
 | Validation date | 2026-07-20 |
 | Visibility | Public |

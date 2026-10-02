@@ -5,7 +5,8 @@
 | Document status | Current |
 | System status | Operational |
 | Visibility | Public |
-| Last validated | 2026-07-20 |
+| Original commissioning | 2026-07-20 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Sanitized Docker-to-NAS Samba automount implementation |
 
 ## Purpose
@@ -406,3 +407,8 @@ The automount is covered by [Docker VM Validation](../validation/docker-vm.md) a
 - [Jellyfin Implementation](jellyfin.md)
 - [Service Architecture](../architecture/service-architecture.md)
 - [Samba Service](../services/samba.md)
+
+
+## V4 reconciliation
+
+The original build methods above remain useful. Network placement and service inventory have changed since commissioning. Shared storage remains host-owned; source media remains read-only to the application consumer. Guest backups do not by themselves prove coverage of bind-mounted user data. The October 2 storage check was healthy after a USB port move, with continued observation required. See [V4 evidence](../validation/v4-baseline.md).

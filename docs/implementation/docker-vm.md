@@ -5,7 +5,8 @@
 | Document status | Current |
 | System status | Operational |
 | Visibility | Public |
-| Last validated | 2026-07-20 |
+| Original commissioning | 2026-07-20 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Sanitized Docker VM implementation record |
 
 ## Purpose
@@ -64,7 +65,7 @@ The Stage 1 snapshot confirmed:
 | Codename | Noble |
 | Architecture | x86-64 |
 
-The VM uses a predictable address on the trusted LAN and the existing Pi-hole service for DNS.
+The VM uses a predictable address in the server zone and the approved Pi-hole resolvers for DNS.
 
 The exact address is not published.
 
@@ -128,29 +129,7 @@ Do not grant Docker access to ordinary service accounts unless a documented requ
 
 ## Application Directory Standard
 
-Persistent application data is stored under:
-
-```text
-/opt/docker/
-```
-
-Each service receives its own directory:
-
-```text
-/opt/docker/<service>/
-```
-
-The initial Jellyfin structure is:
-
-```text
-/opt/docker/jellyfin/
-├── cache/
-└── config/
-```
-
-At the Stage 1 snapshot, no active Compose file existed in the Jellyfin directory.
-
-The only Compose file found elsewhere under `/opt/docker` belonged to an obsolete test directory and is not part of the Jellyfin deployment.
+Persistent configuration remains under a service-specific directory separate from source media and disposable containers. Jellyfin is now deployed; the July prepared-directory/no-container state is historical. The exact active Compose definition must be inspected before updates. See [Jellyfin implementation](jellyfin.md).
 
 ## Ownership and Permissions
 
@@ -229,18 +208,7 @@ Deleting and recreating a container should not delete application configuration 
 
 ## Network Exposure Principles
 
-Containers should publish only the ports required for approved internal access.
-
-The current design does not approve direct public-internet exposure of application services.
-
-Before external access is considered, the project requires:
-
-- A documented threat model
-- An approved access architecture
-- Authentication requirements
-- Encryption
-- Logging
-- Revocation and rollback procedures
+The VM is in the server zone. Jellyfin accepts approved internal access and the Caddy upstream path from the DMZ. Public HTTPS terminates at the proxy rather than exposing Docker administration. Administrative SSH uses keys with password login disabled; QEMU Guest Agent and unattended updates were installed. Exact guest firewall and router policy remain private.
 
 ## Service Lifecycle
 
@@ -278,7 +246,7 @@ A container may start while NAS storage is unavailable. Application validation m
 - Remote media access uses a root-restricted credentials file.
 - Source media is read-only for Jellyfin.
 - Secrets are excluded from Git.
-- Application ports are intended for trusted internal access.
+- Application ports are limited to approved internal and reverse-proxy paths.
 - The VM receives only the storage paths required by its workloads.
 
 ## Backup Requirements
@@ -339,3 +307,8 @@ See [Docker VM Validation](../validation/docker-vm.md).
 - [Jellyfin Implementation](jellyfin.md)
 - [Service Architecture](../architecture/service-architecture.md)
 - [Docker VM Validation](../validation/docker-vm.md)
+
+
+## V4 reconciliation
+
+The original build methods above remain useful. Network placement and service inventory have changed since commissioning. Shared storage remains host-owned; source media remains read-only to the application consumer. Guest backups do not by themselves prove coverage of bind-mounted user data. The October 2 storage check was healthy after a USB port move, with continued observation required. See [V4 evidence](../validation/v4-baseline.md).

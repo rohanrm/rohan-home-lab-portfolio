@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - docs-v3-redesign
+      - docs-v4-redesign
   workflow_dispatch:
 
 permissions:
@@ -13,26 +14,24 @@ permissions:
 
 jobs:
   audit:
-    name: Validate public documentation
+    name: Validate V4 documentation
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
         with:
           persist-credentials: false
-
-      - name: Run Version 3 audit
-        run: python3 tools/audit-v3.py .
-
-      - name: Validate Markdown configuration
-        run: python3 -m json.tool .markdownlint.json >/dev/null
-
-      - name: Check trailing whitespace
+      - name: Run V4 audit with repository-specific boundary
+        env:
+          REPO_NAME: ${{ github.repository }}
         shell: bash
         run: |
-          if git grep -nI -E '[[:blank:]]+$' -- \
-            '*.md' '*.yml' '*.yaml' '*.json' '*.py' '*.sh'; then
-            echo "Trailing whitespace detected."
-            exit 1
+          if [[ "$REPO_NAME" == "rohanrm/rohan-home-lab-blueprint" ]]; then
+            python3 tools/audit-v4.py . --private
+          else
+            python3 tools/audit-v4.py .
           fi
+      - name: Validate Markdown configuration
+        run: python3 -m json.tool .markdownlint.json >/dev/null
+      - name: Check whitespace
+        run: git diff-tree --check HEAD

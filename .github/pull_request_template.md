@@ -18,7 +18,7 @@ No lifecycle change
 
 ## Validation
 
-- [ ] `python3 tools/audit-v3.py .` passes.
+- [ ] `python3 tools/audit-v4.py .` passes.
 - [ ] `python3 -m json.tool .markdownlint.json` passes.
 - [ ] `git diff --check` passes.
 - [ ] Local Markdown links resolve.

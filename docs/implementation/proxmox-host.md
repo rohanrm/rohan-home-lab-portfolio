@@ -5,7 +5,8 @@
 | Document status | Current |
 | System status | Operational |
 | Visibility | Public |
-| Last validated | 2026-07-20 |
+| Original commissioning | 2026-07-20 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Sanitized Proxmox host implementation record |
 
 ## Purpose
@@ -37,7 +38,7 @@ The final host design uses:
 | Host role | Hypervisor, guest lifecycle, storage mounting, and hardware monitoring |
 | Guest storage | LVM-backed local storage on the internal NVMe SSD |
 | Shared-data storage | External ext4 filesystem mounted by the host |
-| DNS | Existing Pi-hole service on the trusted LAN |
+| DNS | Approved Pi-hole resolvers |
 | Application hosting | Dedicated Ubuntu VM rather than the Proxmox host |
 
 The host is intentionally kept narrow in scope. Normal self-hosted applications belong inside guests.
@@ -53,7 +54,7 @@ The installation established:
 - The Proxmox system filesystem
 - Swap
 - LVM-backed guest storage
-- A management interface on the trusted LAN
+- A management interface in the server zone
 - A stable hostname
 - Administrative access to the Proxmox interface
 
@@ -165,26 +166,9 @@ lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINTS,MODEL
 
 ## Guest Design
 
-### NAS LXC
+Six hosted workloads now separate proxy, NAS, application, DNS, monitoring, and controller responsibilities. The NAS is an unprivileged LXC; Docker and UniFi use VMs. See [service architecture](../architecture/service-architecture.md).
 
-The NAS workload runs in an unprivileged LXC because it benefits from:
-
-- Low overhead
-- Direct bind mounts
-- Fast startup
-- A dedicated userspace for Samba and permissions
-
-### Docker VM
-
-Docker runs inside an Ubuntu VM because this provides:
-
-- A conventional Docker environment
-- VM-level kernel isolation
-- Separation from the Proxmox host
-- Separation from the NAS service
-- Easier use of standard Docker tooling
-
-The Docker daemon is not installed directly on the Proxmox host.
+The active host bridge is VLAN-aware. Management resides on the management VLAN; the other bridge is unnumbered. Preserve the verified trunk membership when changing guest tags. Exact interface configuration and addresses are private.
 
 ## Startup Design
 
@@ -267,3 +251,8 @@ See [Proxmox Host Validation](../validation/proxmox-host.md).
 - [Service Architecture](../architecture/service-architecture.md)
 - [NAS LXC Implementation](nas-lxc.md)
 - [Docker VM Implementation](docker-vm.md)
+
+
+## V4 reconciliation
+
+The original build methods above remain useful. Network placement and service inventory have changed since commissioning. Shared storage remains host-owned; source media remains read-only to the application consumer. Guest backups do not by themselves prove coverage of bind-mounted user data. The October 2 storage check was healthy after a USB port move, with continued observation required. See [V4 evidence](../validation/v4-baseline.md).

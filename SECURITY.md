@@ -4,7 +4,7 @@
 |---|---|
 | Document status | Current |
 | Visibility | Public |
-| Last reviewed | 2026-07-22 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Security reporting and accidental-exposure response |
 
 ## Purpose
