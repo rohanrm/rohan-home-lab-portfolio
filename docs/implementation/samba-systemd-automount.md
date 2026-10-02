@@ -398,7 +398,7 @@ Confirm network and NAS availability before changing timeouts.
 
 ## Validation
 
-The automount is covered by [Docker VM Validation](../validation/docker-vm.md) and the future service-specific checks for dependent applications.
+The automount is covered by [Docker VM Validation](../../archive/commissioning-2026-07/docker-vm.md) and the future service-specific checks for dependent applications.
 
 ## Related Documentation
 

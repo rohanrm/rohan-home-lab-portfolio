@@ -297,7 +297,7 @@ For a Docker platform problem, avoid deleting `/var/lib/docker` or service direc
 
 ## Validation
 
-See [Docker VM Validation](../validation/docker-vm.md).
+See [Docker VM Validation](../../archive/commissioning-2026-07/docker-vm.md).
 
 ## Related Documentation
 
@@ -306,7 +306,7 @@ See [Docker VM Validation](../validation/docker-vm.md).
 - [Samba systemd Automount Implementation](samba-systemd-automount.md)
 - [Jellyfin Implementation](jellyfin.md)
 - [Service Architecture](../architecture/service-architecture.md)
-- [Docker VM Validation](../validation/docker-vm.md)
+- [Docker VM Validation](../../archive/commissioning-2026-07/docker-vm.md)
 
 
 ## V4 reconciliation

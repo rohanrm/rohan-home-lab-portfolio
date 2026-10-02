@@ -173,7 +173,7 @@ Future client-attribution work belongs in the private operational repository.
 ## Related Documentation
 
 - [Network Architecture](../architecture/network-architecture.md)
-- [Inventory Summary](../reference/inventory-summary.md)
+- [Service Catalogue](../services/README.md)
 - [Public and Private Information Boundary](../standards/public-private-boundary.md)
 - [Roadmap](../planning/roadmap.md)
 

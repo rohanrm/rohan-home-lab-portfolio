@@ -17,4 +17,6 @@
 - [Document audit](v4-document-audit.md): every V3 file and its V4 disposition.
 - [Pruning recommendations](pruning-recommendations.md): proposed consolidation/removal for later review.
 
-The private blueprint branches from `docs-v3-redesign`; the public portfolio branches from its own `main`. Both use `docs-v4-redesign`. Their public documentation agrees, but the private companion is excluded from the public tree. V3 and main are preserved during this branch update.
+Both repositories now use `main` for the live V4 documentation. Historical branch tips are archived before branch removal. Their shared documentation agrees, while the operational companion remains exclusive to the private blueprint.
+
+- [Publication cleanup](cleanup-record.md): archive moves, duplicate removal and branch lifecycle.

@@ -1,6 +1,6 @@
 # Proxmox Host Validation
 
-> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](v4-baseline.md) for later changes and open checks.
+> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](../../docs/validation/v4-baseline.md) for later changes and open checks.
 
 | Field | Value |
 |---|---|
@@ -342,8 +342,8 @@ Repeat relevant checks after:
 ## Related Documentation
 
 - [Infrastructure Baseline](infrastructure-baseline.md)
-- [Proxmox Host Implementation](../implementation/proxmox-host.md)
+- [Proxmox Host Implementation](../../docs/implementation/proxmox-host.md)
 - [NAS LXC Validation](nas-lxc.md)
 - [Docker VM Validation](docker-vm.md)
-- [Hardware Profile](../reference/hardware-profile.md)
-- [ADR-0002 — Select the Beelink EQ14](../decisions/adr-0002-select-beelink-eq14.md)
+- [Hardware Profile](../../docs/reference/hardware-profile.md)
+- [ADR-0002 — Select the Beelink EQ14](../../docs/decisions/adr-0002-select-beelink-eq14.md)

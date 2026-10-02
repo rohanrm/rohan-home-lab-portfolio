@@ -206,7 +206,7 @@ The platform selection was validated through checks confirming:
 - Successful operation of the NAS LXC
 - Successful operation of the Docker VM
 
-See [Proxmox Host Validation](../validation/proxmox-host.md).
+See [Proxmox Host Validation](../../archive/commissioning-2026-07/proxmox-host.md).
 
 ## Related Documentation
 
@@ -214,7 +214,7 @@ See [Proxmox Host Validation](../validation/proxmox-host.md).
 - [Service Architecture](../architecture/service-architecture.md)
 - [Hardware Profile](../reference/hardware-profile.md)
 - [Proxmox Host Implementation](../implementation/proxmox-host.md)
-- [Proxmox Host Validation](../validation/proxmox-host.md)
+- [Proxmox Host Validation](../../archive/commissioning-2026-07/proxmox-host.md)
 - [Roadmap](../planning/roadmap.md)
 
 ## Notes

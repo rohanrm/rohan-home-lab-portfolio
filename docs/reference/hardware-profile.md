@@ -36,4 +36,4 @@ RAM headroom is a current planning constraint. A refurbished OptiPlex and a larg
 
 Models, capacities, and useful capabilities are public. Serial numbers, MAC addresses, UUIDs, exact port assignments, firmware administration URLs, and load maps stay private. Software versions are historical observations, not a statement of the latest available release.
 
-See [physical topology](../architecture/physical-topology.md), [inventory](inventory-summary.md), and [V4 evidence](../validation/v4-baseline.md).
+See [physical topology](../architecture/physical-topology.md), [service catalogue](../services/README.md), and [V4 evidence](../validation/v4-baseline.md).

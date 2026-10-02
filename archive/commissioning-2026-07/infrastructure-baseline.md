@@ -1,6 +1,6 @@
 # Infrastructure Baseline Validation
 
-> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](v4-baseline.md) for later changes and open checks.
+> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](../../docs/validation/v4-baseline.md) for later changes and open checks.
 
 | Field | Value |
 |---|---|
@@ -252,6 +252,6 @@ Repeat the baseline after:
 - [Proxmox Host Validation](proxmox-host.md)
 - [NAS LXC Validation](nas-lxc.md)
 - [Docker VM Validation](docker-vm.md)
-- [Jellyfin Validation](jellyfin.md)
-- [Service Architecture](../architecture/service-architecture.md)
-- [Public and Private Information Boundary](../standards/public-private-boundary.md)
+- [Jellyfin Validation](../../docs/validation/jellyfin.md)
+- [Service Architecture](../../docs/architecture/service-architecture.md)
+- [Public and Private Information Boundary](../../docs/standards/public-private-boundary.md)

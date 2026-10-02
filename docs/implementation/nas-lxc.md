@@ -327,7 +327,7 @@ Do not solve a permission problem by granting broad world-writable access.
 
 ## Validation
 
-See [NAS LXC Validation](../validation/nas-lxc.md).
+See [NAS LXC Validation](../../archive/commissioning-2026-07/nas-lxc.md).
 
 ## Related Documentation
 
@@ -336,7 +336,7 @@ See [NAS LXC Validation](../validation/nas-lxc.md).
 - [Samba systemd Automount Implementation](samba-systemd-automount.md)
 - [Service Architecture](../architecture/service-architecture.md)
 - [Samba Service](../services/samba.md)
-- [Inventory Summary](../reference/inventory-summary.md)
+- [Service Catalogue](../services/README.md)
 
 
 ## V4 reconciliation

@@ -48,7 +48,7 @@ V4 retains historical decisions and July commissioning results with explicit lab
 ## Operations
 
 - [Operations Guide](operations/operations-guide.md)
-- [Troubleshooting Guide](operations/troubleshooting.md)
+- [Troubleshooting Guide](../archive/commissioning-2026-07/troubleshooting.md)
 
 ## Planning
 
@@ -58,7 +58,6 @@ V4 retains historical decisions and July commissioning results with explicit lab
 ## Reference
 
 - [Hardware Profile](reference/hardware-profile.md)
-- [Inventory Summary](reference/inventory-summary.md)
 - [Network Addressing Policy](reference/network-addressing-policy.md)
 
 ## Release
@@ -92,14 +91,14 @@ V4 retains historical decisions and July commissioning results with explicit lab
 
 ## Validation
 
-- [Docker VM Validation](validation/docker-vm.md) — historical commissioning record
-- [Infrastructure Baseline Validation](validation/infrastructure-baseline.md) — historical commissioning record
 - [Jellyfin Validation](validation/jellyfin.md)
-- [NAS LXC Validation](validation/nas-lxc.md) — historical commissioning record
-- [Proxmox Host Validation](validation/proxmox-host.md) — historical commissioning record
 - [V4 Evidence Baseline](validation/v4-baseline.md)
 
 ## Release review
 
 - [File-by-file V3 audit](release/v4-document-audit.md)
 - [Pruning recommendations](release/pruning-recommendations.md)
+
+## Historical archive
+
+[Commissioning and older diagnostic examples](../archive/README.md) are outside the current-state documentation.

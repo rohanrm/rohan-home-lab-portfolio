@@ -241,7 +241,7 @@ Detailed identifiers and recovery sequencing belong in the private repository.
 
 ## Validation
 
-See [Proxmox Host Validation](../validation/proxmox-host.md).
+See [Proxmox Host Validation](../../archive/commissioning-2026-07/proxmox-host.md).
 
 ## Related Documentation
 

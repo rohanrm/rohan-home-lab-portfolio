@@ -145,4 +145,4 @@ No guaranteed response-time service level is provided for this personal project.
 - [Public and Private Information Boundary](docs/standards/public-private-boundary.md)
 - [Publication Checklist](docs/release/publication-checklist.md)
 - [Clean-History Publication](docs/release/clean-history-publication.md)
-- [Troubleshooting Guide](docs/operations/troubleshooting.md)
+- [Troubleshooting Guide](archive/commissioning-2026-07/troubleshooting.md)

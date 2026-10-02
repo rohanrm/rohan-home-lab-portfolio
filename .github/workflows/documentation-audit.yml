@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - main
-      - docs-v3-redesign
-      - docs-v4-redesign
   workflow_dispatch:
 
 permissions:

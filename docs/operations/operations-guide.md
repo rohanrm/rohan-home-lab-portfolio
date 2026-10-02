@@ -54,4 +54,4 @@ After the October USB port change, retain the same configuration during the obse
 
 Update implementation, dated validation, service lifecycle, architecture, and roadmap according to the facts that changed. Keep exact production allocations and useful diagnostics private; keep passwords, keys, tokens, credential files, and sensitive backups outside Git. Run the V4 audit before publication.
 
-See [troubleshooting](troubleshooting.md), [service catalogue](../services/README.md), [V4 baseline](../validation/v4-baseline.md), and [release checklist](../release/publication-checklist.md).
+See [troubleshooting](../../archive/commissioning-2026-07/troubleshooting.md), [service catalogue](../services/README.md), [V4 baseline](../validation/v4-baseline.md), and [release checklist](../release/publication-checklist.md).

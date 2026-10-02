@@ -84,3 +84,7 @@ All seven original Mermaid blocks were replaced with the shared SVG visual syste
 This reconciles the source tree and project records. It does not claim a new live system audit, forensic scan of all Git history, final analytics counters, a full restore, completed GPU transcoding, or long-term USB stability. The separate existing private operations repository was not modified.
 
 See [V4 baseline](../validation/v4-baseline.md), [pruning](pruning-recommendations.md), and [documentation index](../README.md).
+
+## Post-publication cleanup
+
+The table above records the initial V4 reconciliation. Later archive moves and removals are recorded in [publication cleanup](cleanup-record.md); it is not an inventory of current paths.

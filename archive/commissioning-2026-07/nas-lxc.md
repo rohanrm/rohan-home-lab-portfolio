@@ -1,6 +1,6 @@
 # NAS LXC Validation
 
-> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](v4-baseline.md) for later changes and open checks.
+> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](../../docs/validation/v4-baseline.md) for later changes and open checks.
 
 | Field | Value |
 |---|---|
@@ -288,7 +288,7 @@ Repeat relevant checks after:
 ## Related Documentation
 
 - [Infrastructure Baseline](infrastructure-baseline.md)
-- [NAS LXC Implementation](../implementation/nas-lxc.md)
+- [NAS LXC Implementation](../../docs/implementation/nas-lxc.md)
 - [Docker VM Validation](docker-vm.md)
-- [Service Architecture](../architecture/service-architecture.md)
-- [Samba Service](../services/samba.md)
+- [Service Architecture](../../docs/architecture/service-architecture.md)
+- [Samba Service](../../docs/services/samba.md)

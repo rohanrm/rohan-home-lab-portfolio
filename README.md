@@ -58,7 +58,7 @@ See the [V4 evidence baseline](docs/validation/v4-baseline.md) and [roadmap](doc
 | Network reasoning and boundaries | [Architecture](docs/architecture/network-architecture.md) and [ADRs](docs/decisions/README.md) |
 | How components were built | [Documentation index](docs/README.md) |
 | What was tested and what remains open | [Evidence baseline](docs/validation/v4-baseline.md) |
-| Troubleshooting and maintenance judgment | [Operations](docs/operations/operations-guide.md) and [knowledge base](docs/operations/troubleshooting.md) |
+| Troubleshooting and maintenance judgment | [Operations](docs/operations/operations-guide.md) and [knowledge base](archive/commissioning-2026-07/troubleshooting.md) |
 | V4 reconciliation and proposed cleanup | [Document audit](docs/release/v4-document-audit.md) and [pruning recommendations](docs/release/pruning-recommendations.md) |
 
 ## Publication and contribution

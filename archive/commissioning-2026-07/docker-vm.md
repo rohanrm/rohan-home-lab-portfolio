@@ -1,6 +1,6 @@
 # Docker VM Validation
 
-> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](v4-baseline.md) for later changes and open checks.
+> **Historical commissioning record — July 2026.** Results below describe that dated environment. They are not current network or service status. See [V4 evidence](../../docs/validation/v4-baseline.md) for later changes and open checks.
 
 | Field | Value |
 |---|---|
@@ -327,8 +327,8 @@ Repeat relevant checks after:
 ## Related Documentation
 
 - [Infrastructure Baseline](infrastructure-baseline.md)
-- [Docker VM Implementation](../implementation/docker-vm.md)
+- [Docker VM Implementation](../../docs/implementation/docker-vm.md)
 - [NAS LXC Validation](nas-lxc.md)
-- [Jellyfin Validation](jellyfin.md)
-- [Samba Systemd Automount Implementation](../implementation/samba-systemd-automount.md)
-- [Service Architecture](../architecture/service-architecture.md)
+- [Jellyfin Validation](../../docs/validation/jellyfin.md)
+- [Samba Systemd Automount Implementation](../../docs/implementation/samba-systemd-automount.md)
+- [Service Architecture](../../docs/architecture/service-architecture.md)

@@ -37,9 +37,9 @@ Use separate checks for router/switch persistence, host networking, guest servic
 
 ## Historical references
 
-- [July infrastructure commissioning](infrastructure-baseline.md)
-- [Proxmox commissioning](proxmox-host.md)
-- [NAS commissioning](nas-lxc.md)
-- [Docker commissioning](docker-vm.md)
+- [July infrastructure commissioning](../../archive/commissioning-2026-07/infrastructure-baseline.md)
+- [Proxmox commissioning](../../archive/commissioning-2026-07/proxmox-host.md)
+- [NAS commissioning](../../archive/commissioning-2026-07/nas-lxc.md)
+- [Docker commissioning](../../archive/commissioning-2026-07/docker-vm.md)
 - [Current Jellyfin validation limits](jellyfin.md)
 - [Roadmap acceptance work](../planning/roadmap.md)
