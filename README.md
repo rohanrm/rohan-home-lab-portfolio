@@ -1,219 +1,70 @@
-# Rohan Home Lab Blueprint
+# Rohan Menon · Home Lab Portfolio
 
-A staged home-lab project focused on Linux administration, virtualization, network services, containerized applications, storage, validation, and maintainable technical documentation.
+![Home Lab V4: segmented networking, Linux infrastructure and observable services](assets/diagrams/hero.svg)
 
-> **Repository status:** The Version 3 documentation and release-hardening structure are complete. A clean-history employer-facing repository has been published and validated. The current technical focus is completing and validating the Jellyfin deployment.
+**A practical infrastructure portfolio: design, build, secure, observe, and document.**
 
-## Project Goals
+I am transitioning from manufacturing operations and ERP systems into IT and information security. This lab turns that learning into working Linux infrastructure, controlled network boundaries, and repeatable troubleshooting. I have completed CompTIA Security+ and am studying Network+.
 
-This project demonstrates practical experience with:
+[Architecture](docs/architecture/network-architecture.md) · [Services](docs/services/README.md) · [Evidence](docs/validation/v4-baseline.md) · [Documentation](docs/README.md)
 
-- Linux system administration
-- Proxmox virtualization
-- LXC and virtual-machine design
-- Docker Engine and Docker Compose
-- Network-attached storage
-- Samba file sharing
-- DNS filtering
-- Service deployment and validation
-- Architecture Decision Records
-- Operational troubleshooting
-- Security-conscious documentation
-- Automated documentation quality checks
-- Clean-history release preparation
+## What I built
 
-## Current Environment
-
-| Component | Role | Status |
+| Capability | Implementation | Evidence to explore |
 |---|---|---|
-| Proxmox host | Virtualization platform | Operational |
-| NAS LXC | Storage presentation and Samba services | Operational |
-| Docker VM | Container host | Operational |
-| Samba automount | Controlled media access from Docker VM | Operational |
-| Bare-metal Pi-hole | Network DNS filtering | Operational |
-| Jellyfin | Media-service deployment | In Progress |
-| Immich | Planned photo-management service | Planned |
+| Segmented networking | Flint routing, managed VLAN switch, tagged host/AP uplinks, separate client zones | [Network architecture](docs/architecture/network-architecture.md) |
+| Linux virtualization | Proxmox, purpose-specific LXCs and VMs, six hosted workloads | [Service architecture](docs/architecture/service-architecture.md) |
+| Controlled storage | Host-owned ext4 data, unprivileged NAS, Samba, read-only application media | [NAS implementation](docs/implementation/nas-lxc.md) |
+| Containerized media | Docker/Compose Jellyfin with persistent state and DMZ HTTPS proxy | [Jellyfin](docs/services/jellyfin.md) |
+| DNS resilience | Primary Pi-hole LXC plus physical secondary | [DNS migration](docs/implementation/pihole-migration.md) |
+| Network management | UniFi migrated from a workstation to an always-on VM | [Controller migration](docs/implementation/unifi-controller.md) |
+| Observability | Prometheus, Grafana, host metrics, six-workload backup visibility | [Monitoring](docs/services/monitoring.md) |
+| Data engineering practice | Guest-scoped DNS snapshots, idempotent SQLite import, domain/service enrichment | [Analytics project](docs/services/guest-dns-analytics.md) |
 
-Exact internal addresses, hardware identifiers, household-device details, raw command output, and security-sensitive configuration are intentionally maintained outside this public repository.
+## Architecture at a glance
 
-## Architecture Summary
+![Sanitized architecture showing gateway, routing and switching, separated network roles and service hosting](assets/diagrams/network.svg)
 
-The environment separates responsibilities across several layers:
+The router owns gateways and DHCP. The managed switch carries distinct trust zones to the host and wireless access point. Proxmox separates storage, applications, DNS, monitoring, controller management, and the DMZ proxy. A physical secondary resolver stays outside the hypervisor failure domain.
 
-1. **Network layer** — routing, DHCP, DNS, and wireless access.
-2. **Virtualization layer** — Proxmox hosts the NAS LXC and Docker VM.
-3. **Storage layer** — persistent storage is mounted by the Proxmox host.
-4. **File-service layer** — the NAS LXC presents approved data through Samba.
-5. **Application layer** — the Docker VM runs Compose-managed services.
-6. **Documentation layer** — architecture, implementation, validation, operations, and decisions are maintained separately.
-7. **Release layer** — automated audits and publication procedures protect the employer-facing repository.
+The illustration describes roles; it does not expose production addresses, exact rule maps, or household device identities.
 
-Primary architecture documents:
+## Skills demonstrated
 
-- [Network Architecture](docs/architecture/network-architecture.md)
-- [Physical Topology](docs/architecture/physical-topology.md)
-- [Service Architecture](docs/architecture/service-architecture.md)
+- **Network administration:** VLAN trunks/access ports, routed trust zones, DHCP/DNS, wireless isolation, VPN and reverse-proxy boundaries.
+- **Linux and systems:** Proxmox, LXC/VM placement, systemd, SSH key access, permissions/ACLs, persistent mounts and storage diagnostics.
+- **Applications and data:** Docker Compose, persistent configuration, least-privilege media access, SQLite deduplication and service enrichment.
+- **Operations:** Read-only discovery, dependency-aware maintenance, metrics inspection, backup freshness, documented exceptions and rollback.
+- **Technical communication:** Architecture decisions, implementation records, dated validation, clear service ownership and sanitized publication.
 
-## Current Technical Baseline
+## Three engineering lessons
 
-The following infrastructure has been validated:
+| Problem | Approach | Recorded outcome |
+|---|---|---|
+| Controller depended on workstation uptime | Move to a dedicated VM and verify AP communication before retirement | AP connected after cutover and old-controller rule removal |
+| Application media access needed protection | Enforce permissions at NAS and client mount boundaries | Approved libraries readable; writes rejected; photos excluded |
+| Backup view omitted newer workloads | Reconcile inventory, archives, metrics and dashboard panels | Six fresh backup ages and **6 / 6 PRESENT** on October 2 |
 
-- Proxmox VE host
-- Hardware virtualization and IOMMU
-- Internal NVMe storage
-- External shared-data storage
-- Unprivileged NAS LXC
-- Persistent storage bind mounts
-- Samba service
-- Docker VM
-- Docker Engine and Compose
-- Root-protected Samba credentials
-- Persistent systemd automount
-- Read-only media access
-- Photo-library isolation
+## Evidence and honest limits
 
-See [Infrastructure Baseline Validation](docs/validation/infrastructure-baseline.md).
+**Documentation baseline: October 2, 2026.** Results reflect dated project records, not a new live audit. The lab is a single-host environment. Fresh guest backups do not prove restoration or NAS user-data coverage. Hardware transcoding, automated UPS shutdown, sustained USB stability, and completion of continuous DNS reporting still need separate evidence.
 
-## Current Focus
+See the [V4 evidence baseline](docs/validation/v4-baseline.md) and [roadmap](docs/planning/roadmap.md). DNS observations are not confirmed website visits; raw client history is not published.
 
-The next technical milestone is completing Jellyfin.
+## Explore the project
 
-Current preparation includes:
-
-- Operational Docker VM
-- Persistent Jellyfin configuration and cache directories
-- Operational NAS media automount
-- Read access to movies, television, and music
-- Write rejection for source media
-- No access to the photo library
-
-Remaining work includes:
-
-- Final Compose definition
-- Container startup
-- Web setup
-- Library creation
-- Playback testing
-- Restart and recreation testing
-- Optional hardware-acceleration validation
-- Backup-boundary documentation
-
-See:
-
-- [Jellyfin Service](docs/services/jellyfin.md)
-- [Jellyfin Implementation](docs/implementation/jellyfin.md)
-- [Jellyfin Validation](docs/validation/jellyfin.md)
-
-## Documentation
-
-The complete index is available in [`docs/README.md`](docs/README.md).
-
-| Area | Purpose |
+| If you want to see… | Start here |
 |---|---|
-| [`architecture/`](docs/architecture/) | How the environment is designed |
-| [`decisions/`](docs/decisions/) | Why significant choices were made |
-| [`implementation/`](docs/implementation/) | How components were built |
-| [`validation/`](docs/validation/) | How completed work was proven |
-| [`services/`](docs/services/) | Service roles, dependencies, and operations |
-| [`operations/`](docs/operations/) | Routine administration and troubleshooting |
-| [`reference/`](docs/reference/) | Stable hardware, inventory, and policy references |
-| [`planning/`](docs/planning/) | Approved work and future exploration |
-| [`history/`](docs/history/) | Meaningful project milestones |
-| [`standards/`](docs/standards/) | Documentation rules, privacy boundary, and templates |
-| [`release/`](docs/release/) | Clean-history publication and release validation |
+| Network reasoning and boundaries | [Architecture](docs/architecture/network-architecture.md) and [ADRs](docs/decisions/README.md) |
+| How components were built | [Documentation index](docs/README.md) |
+| What was tested and what remains open | [Evidence baseline](docs/validation/v4-baseline.md) |
+| Troubleshooting and maintenance judgment | [Operations](docs/operations/operations-guide.md) and [knowledge base](docs/operations/troubleshooting.md) |
+| V4 reconciliation and proposed cleanup | [Document audit](docs/release/v4-document-audit.md) and [pruning recommendations](docs/release/pruning-recommendations.md) |
 
-## Quality and Release Controls
+## Publication and contribution
 
-The repository includes:
+This employer-facing documentation excludes operational addresses, MACs, household identities, detailed security rules, credentials and raw logs. Non-secret operational details are maintained privately; secrets belong outside Git in all cases.
 
-- [Contributing Guide](CONTRIBUTING.md)
-- [Security Policy](SECURITY.md)
-- [Permanent Documentation Audit](tools/audit-v3.py)
-- [GitHub Actions Audit Workflow](.github/workflows/documentation-audit.yml)
-- [Publication Checklist](docs/release/publication-checklist.md)
-- [Clean-History Publication Procedure](docs/release/clean-history-publication.md)
-- [Repository Release Validation](docs/release/repository-release-validation.md)
+See [publication boundary](docs/standards/public-private-boundary.md), [contribution guidance](CONTRIBUTING.md), and [security policy](SECURITY.md).
 
-Run the local audit with:
-
-```bash
-python3 tools/audit-v3.py .
-```
-
-## Documentation Principles
-
-This repository follows several core rules:
-
-- Each important fact has one primary source of truth.
-- Current and planned states are documented separately.
-- Implementation steps and validation evidence are separate.
-- Significant design choices are recorded as ADRs.
-- Git replaces revision-history tables inside individual documents.
-- Public documentation explains technical skill without exposing unnecessary operational detail.
-- Secrets are stored outside Git.
-- A service is not marked operational until its validation requirements pass.
-
-See:
-
-- [Documentation Standard](docs/standards/documentation-standard.md)
-- [Public and Private Information Boundary](docs/standards/public-private-boundary.md)
-
-## Lifecycle Vocabulary
-
-Infrastructure and services use:
-
-```text
-Idea
-  → Planned
-  → In Progress
-  → Implemented
-  → Validated
-  → Operational
-```
-
-Additional states are:
-
-- Paused
-- Blocked
-- Retired
-- Rejected
-
-The written status term is authoritative.
-
-## Public and Private Repositories
-
-The public repository contains:
-
-- Sanitized architecture
-- Technical reasoning
-- Reusable procedures
-- Validation methodology
-- Operational lessons
-- Project planning
-- Release controls
-
-A separate private repository contains:
-
-- Exact IP allocations
-- MAC addresses
-- Serial numbers
-- Disk UUIDs
-- Client-device records
-- Physical port and cable maps
-- Raw command output
-- Recovery notes
-- Detailed security configuration
-
-Passwords, keys, tokens, credential files, and other secrets belong in neither Git repository.
-
-## Publication History Notice
-
-The current Version 3 working tree is sanitized and contains no legacy Version 2 files.
-
-Earlier commits in the development repository may still contain operational details that were later removed. Deleting a file from the current branch does not erase it from Git history.
-
-The employer-facing publication must therefore be created through the documented [Clean-History Publication](docs/release/clean-history-publication.md) process.
-
-## Project Roadmap
-
-See the [Roadmap](docs/planning/roadmap.md) for approved work and [Future Exploration](docs/planning/future-exploration.md) for unapproved ideas.
+[GitHub profile](https://github.com/rohanrm)

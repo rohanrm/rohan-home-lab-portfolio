@@ -4,7 +4,7 @@
 |---|---|
 | Document status | Current |
 | Visibility | Public |
-| Last reviewed | 2026-07-22 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Documentation contribution and review workflow |
 
 ## Purpose
@@ -109,7 +109,7 @@ Keep one branch focused on one coherent outcome.
 Run the permanent audit tool:
 
 ```bash
-python3 tools/audit-v3.py .
+python3 tools/audit-v4.py .
 ```
 
 Validate JSON configuration:
@@ -216,7 +216,7 @@ Changes affecting public publication must update, when relevant:
 - `docs/release/`
 - `docs/planning/roadmap.md`
 - `docs/history/changelog.md`
-- `tools/audit-v3.py`
+- `tools/audit-v4.py`
 
 Run the [Publication Checklist](docs/release/publication-checklist.md) before creating a clean-history public release.
 

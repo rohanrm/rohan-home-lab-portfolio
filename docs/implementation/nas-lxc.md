@@ -5,7 +5,8 @@
 | Document status | Current |
 | System status | Operational |
 | Visibility | Public |
-| Last validated | 2026-07-20 |
+| Original commissioning | 2026-07-20 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Sanitized NAS LXC implementation record |
 
 ## Purpose
@@ -60,9 +61,9 @@ These resources are sufficient for the current Samba-focused role and should be 
 
 ## Network Configuration
 
-The LXC uses a predictable address on the trusted LAN and the router as its default gateway.
+The LXC uses a predictable address in the server zone and the router as its default gateway.
 
-The existing Pi-hole service is used for DNS.
+The approved Pi-hole resolvers provide DNS.
 
 The exact address, guest identifier, and virtual-interface MAC are recorded privately.
 
@@ -291,7 +292,7 @@ Proxmox host
 - Jellyfin receives read-only access to approved media categories.
 - Photos remain outside the Jellyfin access boundary.
 - Passwords and exact user mappings are stored outside Git.
-- Administrative Samba access is limited to the trusted network.
+- Samba and administration use approved routed paths into the server network.
 
 ## Rollback
 
@@ -336,3 +337,8 @@ See [NAS LXC Validation](../validation/nas-lxc.md).
 - [Service Architecture](../architecture/service-architecture.md)
 - [Samba Service](../services/samba.md)
 - [Inventory Summary](../reference/inventory-summary.md)
+
+
+## V4 reconciliation
+
+The original build methods above remain useful. Network placement and service inventory have changed since commissioning. Shared storage remains host-owned; source media remains read-only to the application consumer. Guest backups do not by themselves prove coverage of bind-mounted user data. The October 2 storage check was healthy after a USB port move, with continued observation required. See [V4 evidence](../validation/v4-baseline.md).

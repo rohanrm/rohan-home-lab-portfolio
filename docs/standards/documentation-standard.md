@@ -4,8 +4,8 @@
 |---|---|
 | Document status | Current |
 | Visibility | Public |
-| Last reviewed | 2026-07-21 |
-| Source of truth for | Version 3 documentation rules |
+| Last reviewed | 2026-10-02 |
+| Source of truth for | Version 4 documentation rules |
 
 ## Purpose
 
@@ -440,5 +440,10 @@ For a documentation batch:
 Recommended commit style:
 
 ```text
-docs: add Version 3 documentation standards
+docs: add Version 4 documentation standards
 ```
+
+
+## V4 visual and evidence rules
+
+Use shared, self-contained SVG diagrams with text alternatives. Label connections and trust boundaries; avoid showing policy that the public release does not substantiate. Keep source SVGs editable. Historical commissioning records retain their original test dates and must not imply current live validation.

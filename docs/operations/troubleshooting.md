@@ -4,8 +4,23 @@
 |---|---|
 | Document status | Current |
 | Visibility | Public |
-| Last reviewed | 2026-07-21 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Reusable diagnostic workflow and sanitized known-issue records |
+
+> **V4 scope:** Earlier knowledge-base examples describe commissioning symptoms, not current service status. In particular, the July Jellyfin no-container case is historical; Jellyfin is now running. Check the [V4 evidence](../validation/v4-baseline.md) before applying an old symptom to the live design.
+
+## V4 incident patterns
+
+| Symptom | Diagnostic distinction | Validation after correction |
+|---|---|---|
+| AP management disappears when workstation sleeps | Controller availability versus AP data forwarding | Dedicated controller connection and client service after cutover |
+| Host exporter scrape fails | Listener binding versus routed firewall path | Exporter response and fresh Prometheus series |
+| Backup panel missing a workload | Metrics inventory versus actual archive failure | Archive presence, per-workload age, overview and protected count |
+| USB data disk disconnects despite healthy SMART | Disk health versus transport/enclosure path | Sustained error-free observation, correct mount/bind mounts and Samba |
+| IoT application fails across client zones | Association, app permissions/discovery and routed reachability | Actual stream from the trusted client network |
+| Analytics totals inflate | Repeated snapshot import versus new events | Unique event keys and repeat import adding zero |
+
+Read state before changing it. Preserve identifying logs privately. Do not use broad permissions or unrestricted inter-zone access as a diagnostic fix.
 
 ## Purpose
 
@@ -934,7 +949,7 @@ git grep -nE \
 - Review staged changes before every public commit.
 - Keep raw command output private.
 - Use placeholders in public examples.
-- Publish Version 3 through a clean sanitized history.
+- Publish reviewed content through a separate sanitized history.
 
 ## Escalation Template
 

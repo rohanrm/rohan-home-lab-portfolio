@@ -4,263 +4,53 @@
 |---|---|
 | Document status | Current |
 | Visibility | Public |
-| Last reviewed | 2026-07-21 |
-| Source of truth for | Sanitized physical relationships between network, compute, and storage components |
+| Last reviewed | 2026-10-02 |
+| Source of truth for | Physical Topology |
 
-## Purpose
 
-This document describes how the main home-lab components are physically connected.
 
-It focuses on equipment roles and connection types rather than publishing:
+## Current topology
 
-- Exact room-by-room placement
-- Cable routes
-- Physical port numbers
-- MAC addresses
-- Serial numbers
-- Disk UUIDs
-- Administrative access details
+The provider gateway feeds the Flint 2 in bridge mode. The M4100 is the managed wired aggregation point. Ethernet trunks connect routing, Proxmox, and the U6-LR; assigned access ports connect ordinary wired endpoints. The AP carries wireless client VLANs while retaining its native management network.
 
-Those operational details belong in the private repository.
+![Physical connections between bridged gateway, router, managed switch, access point, hypervisor, physical DNS and external storage](../../assets/diagrams/physical.svg)
 
-## Scope
+Lines describe connection types rather than room placement, cable routes, or physical port numbers.
 
-### Included
+## Equipment roles
 
-- Provider handoff
-- Router and wireless access
-- Proxmox host
-- External storage
-- Raspberry Pi DNS host
-- Ethernet and USB relationships
-- Physical dependency risks
-- Safe expansion principles
-
-### Excluded
-
-- Exact cable lengths and routes
-- Wall-jack identifiers
-- Router port numbers
-- USB port identifiers
-- Household-device locations
-- Power-circuit details
-- Photographs revealing the physical environment
-
-## Current Physical Design
-
-The topology uses the Flint 2 as the central network edge and wired aggregation point.
-
-The Proxmox host connects to the LAN by Ethernet. A high-speed USB connection attaches the external storage enclosure to the Proxmox host.
-
-The UniFi access point uses Ethernet backhaul rather than wireless repeating.
-
-The Raspberry Pi running Pi-hole connects to the trusted LAN as a separate bare-metal service host.
-
-## Physical Topology Diagram
-
-```mermaid
-flowchart TD
-    provider[Provider Connection]
-    gateway[ISP Gateway<br/>Bridge Mode]
-    router[GL.iNet Flint 2<br/>Router and Wired Aggregation]
-    ap[UniFi U6-LR<br/>Ethernet-Backhauled Access Point]
-    pihole[Raspberry Pi<br/>Pi-hole]
-    proxmox[Beelink EQ14<br/>Proxmox Host]
-    enclosure[UGREEN Storage Enclosure]
-    disk[Seagate IronWolf<br/>Persistent Storage]
-    wired[Wired LAN Clients]
-    wireless[Wireless LAN Clients]
-
-    provider --> gateway
-    gateway -->|Ethernet| router
-
-    router -->|Ethernet| ap
-    router -->|LAN connection| pihole
-    router -->|Ethernet| proxmox
-    router -->|Ethernet as required| wired
-
-    ap -->|Wi-Fi| wireless
-
-    enclosure -->|Contains| disk
-    enclosure -->|High-speed USB| proxmox
-```
-
-Exact port assignments and physical placement are intentionally omitted.
-
-## Equipment Roles
-
-| Equipment | Physical role | Connection |
+| Equipment | Role | Important dependency |
 |---|---|---|
-| ISP gateway | Provider handoff in bridge mode | Provider medium and Ethernet |
-| Flint 2 | Router, firewall, DHCP server, and current wired aggregation point | Ethernet |
-| UniFi U6-LR | Extends wireless coverage | Ethernet backhaul and Wi-Fi |
-| Raspberry Pi | Independent Pi-hole host | Trusted LAN |
-| Beelink EQ14 | Proxmox virtualization host | Ethernet |
-| UGREEN enclosure | Houses the NAS disk | High-speed USB |
-| Seagate IronWolf disk | Persistent home-lab storage | Installed in external enclosure |
+| Provider gateway | Bridged handoff | Provider connection and power |
+| Flint 2 | Routing, DHCP, firewall, VPN | Gateway availability |
+| M4100-26G | VLAN switching and trunk distribution | Saved port membership and native VLAN policy |
+| U6-LR | Ethernet-backed wireless access | Uplink and controller management reachability |
+| Beelink EQ14 | Proxmox compute | Local NVMe, RAM, network trunk |
+| Physical Pi-hole host | Independent secondary DNS | Network and its own power |
+| UGREEN enclosure / IronWolf | Primary shared-data attachment | USB transport and host filesystem mount |
+| WD Elements | Manual external backup target | Availability and verified backup copies |
+| CyberPower UPS | Installed power-protection equipment | Actual protected-load map and battery condition |
 
-## Connection Path Summary
+UPS presence is confirmed; automated NUT shutdown and outage testing are not established by the evidence used for V4. The public drawing intentionally omits the protected outlet/load map.
 
-### Internet path
+## Storage observation
 
-```text
-Provider connection
-  → ISP gateway in bridge mode
-  → Flint 2 router
-  → Trusted LAN
-```
+The host owns the ext4 data mount and presents selected directories to the NAS LXC. The Docker VM receives media over Samba. Guest backup success does not establish coverage of host bind-mounted user data.
 
-### Wireless path
+On October 2, the enclosure was moved to another USB port after repeated disconnects. The new connection negotiated 5 Gbit/s; the data mount and Samba were healthy at the check, with no new I/O errors. The longer observation period remains open. A healthy SMART result does not rule out a USB transport problem.
 
-```text
-Flint 2 router
-  → Ethernet backhaul
-  → UniFi access point
-  → Wireless client
-```
+## Startup and shutdown
 
-### Virtualization path
+Bring up routing and switching, the physical resolver, and the hypervisor before dependent services. Confirm the host data mount before the NAS starts using bind mounts. Start application consumers after Samba is available. Stop consumers before storage during maintenance. An automount reduces boot coupling but cannot supply a missing NAS.
 
-```text
-Flint 2 router
-  → Ethernet
-  → Beelink EQ14
-  → Proxmox guests
-```
+## Failure domains
 
-### Storage path
-
-```text
-IronWolf disk
-  → UGREEN enclosure
-  → High-speed USB
-  → Proxmox host
-  → NAS LXC bind mounts
-  → Samba clients
-```
-
-## Compute and Storage Relationship
-
-The physical storage device is attached to the Proxmox host, not passed directly to the Docker VM.
-
-This design establishes clear ownership:
-
-| Layer | Responsibility |
+| Loss | Expected impact |
 |---|---|
-| Physical disk and enclosure | Stores persistent data |
-| Proxmox host | Mounts the filesystem and owns the physical attachment |
-| NAS LXC | Receives selected directories through bind mounts |
-| Samba | Presents controlled network shares |
-| Docker VM | Consumes only required shares |
-| Application container | Uses its assigned application and media paths |
+| Router or switch | Routed services and client connectivity disrupted |
+| Hypervisor | Six hosted workloads unavailable; physical DNS can remain available |
+| External disk/enclosure | Shared-data services lose their source storage |
+| AP uplink | Wireless service interrupted |
+| Backup disk | Manual backup destination unavailable |
 
-This prevents application containers from directly managing the physical disk.
-
-## Wireless Design
-
-The access point is connected by Ethernet backhaul.
-
-Advantages include:
-
-- No wireless backhaul bandwidth penalty
-- More predictable latency
-- Better reliability than repeating a wireless signal
-- Central routing and addressing through the Flint 2
-- A cleaner path toward future network segmentation
-
-The current wireless network remains part of the same trusted LAN as wired clients.
-
-## Current Wired Aggregation
-
-The design does not currently depend on a separate managed switch.
-
-The Flint 2 provides the available wired connections for the present environment.
-
-This is adequate while:
-
-- Port demand remains low
-- All devices remain on one trusted LAN
-- VLAN trunking is not required
-- Link aggregation is not required
-- Central switch monitoring is not required
-
-A managed switch may become justified when segmentation, additional wired devices, PoE requirements, or improved observability become approved needs.
-
-## Power and Startup Dependencies
-
-The public repository does not document exact outlets, circuits, or power-strip layout.
-
-At a functional level, startup depends on:
-
-1. Router and LAN availability
-2. Proxmox host startup
-3. Persistent storage mounting on the host
-4. NAS LXC startup
-5. Samba availability
-6. Docker VM startup
-7. Application container startup
-
-The separate bare-metal Pi-hole host also depends on LAN and power availability.
-
-## Physical Trust and Safety Considerations
-
-- The virtualization host and storage enclosure should remain physically stable and ventilated.
-- Storage cabling should not be placed under tension.
-- The external disk should not be disconnected while mounted.
-- Network and power cables should be labelled in the private operational record.
-- Administrative interfaces should not be exposed merely because the equipment is physically inside the home.
-- Photographs intended for public use should be reviewed for labels, serials, QR codes, addresses, or other identifying details.
-
-## Single Points of Failure
-
-| Component | Physical dependency | Effect if unavailable |
-|---|---|---|
-| Flint 2 | Central router and wired aggregation | Loss of normal LAN routing and DHCP |
-| Beelink EQ14 | Hosts both infrastructure guests | Loss of NAS and Docker workloads |
-| External disk or enclosure | Primary persistent storage | Loss of shared data availability |
-| Uplink to access point | Wireless backhaul | Reduced wireless coverage |
-| Pi-hole host | Active DNS filtering service | DNS disruption unless a fallback is configured |
-
-Documenting these dependencies supports future backup, monitoring, and redundancy work.
-
-## Expansion Boundaries
-
-### Approved near-term expansion
-
-The current physical platform is sufficient for completing Jellyfin and beginning Immich planning.
-
-### Deferred expansion
-
-The following are not part of the current topology:
-
-- Managed switch
-- VLAN trunking
-- Additional access points
-- Dedicated backup storage
-- Uninterruptible power supply
-- Secondary active DNS host
-- Additional Proxmox nodes
-
-These may be evaluated later but should not appear as installed equipment.
-
-## Private Operational Records
-
-The following belong in the private repository:
-
-- Cable map
-- Physical port map
-- Exact USB port selection
-- Detailed device placement
-- Serial numbers
-- Hardware identifiers
-- Disk UUIDs
-- Warranty information
-- Photographs containing identifying labels
-
-## Related Documentation
-
-- [Network Architecture](network-architecture.md)
-- [Service Architecture](service-architecture.md)
-- [Hardware Profile](../reference/hardware-profile.md)
-- [Inventory Summary](../reference/inventory-summary.md)
-- [Public and Private Information Boundary](../standards/public-private-boundary.md)
+Additional compute and larger disks are being evaluated; they are not installed components. See [hardware profile](../reference/hardware-profile.md), [operations](../operations/operations-guide.md), and [V4 evidence](../validation/v4-baseline.md).

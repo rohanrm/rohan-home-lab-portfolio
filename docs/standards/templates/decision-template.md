@@ -91,3 +91,8 @@ Explain how the decision's intended outcome will be verified.
 Add later clarifications without rewriting the original decision history.
 
 When a later decision replaces this one, create a new ADR and update the supersession fields.
+
+
+## V4 authoring note
+
+Template links and values are placeholders. Replace them before publication. Add a dated evidence source for every observed result, distinguish a recorded check from a new live test, and use a role-based diagram only when it clarifies a relationship. Public copies must exclude operational identifiers and raw client data.

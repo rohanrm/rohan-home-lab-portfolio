@@ -95,3 +95,8 @@ Summarize alternatives only when useful. Significant choices should link to ADRs
 - [Implementation document](../implementation/example.md)
 - [Service document](../services/example.md)
 - [Reference document](../reference/example.md)
+
+
+## V4 authoring note
+
+Template links and values are placeholders. Replace them before publication. Add a dated evidence source for every observed result, distinguish a recorded check from a new live test, and use a role-based diagram only when it clarifies a relationship. Public copies must exclude operational identifiers and raw client data.

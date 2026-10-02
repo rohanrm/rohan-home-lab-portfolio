@@ -1,5 +1,7 @@
 # ADR-0001 — Defer Investigation of Unknown Wireless Devices
 
+> Original decision preserved. Later architecture is documented in [ADR-0003](adr-0003-segment-network.md) and [ADR-0004](adr-0004-always-on-controller-and-independent-dns.md).
+
 | Field | Value |
 |---|---|
 | Decision status | Accepted |

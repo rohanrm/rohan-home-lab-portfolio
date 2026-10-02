@@ -4,7 +4,7 @@
 |---|---|
 | Document status | Current |
 | Visibility | Public |
-| Last reviewed | 2026-07-21 |
+| Last reviewed | 2026-10-02 |
 | Source of truth for | Publication, privacy, and redaction rules |
 
 ## Purpose
@@ -150,7 +150,7 @@ Examples of forbidden content include:
 ```text
 password=...
 api_key=...
------BEGIN OPENSSH PRIVATE KEY-----
+<private-key-block>
 ```
 
 A filename such as `credentials-example.txt` is not safe merely because the repository is private.
@@ -257,7 +257,7 @@ Before public release:
 
 1. Review the full repository for sensitive material.
 2. Do not rely only on the latest branch state.
-3. Prefer publishing the sanitized Version 3 tree in a fresh repository history.
+3. Prefer publishing the sanitized Version 4 tree in a fresh repository history.
 4. Preserve the historical development repository privately if needed.
 5. Do not make the historical repository public merely because current files are sanitized.
 
@@ -307,7 +307,7 @@ A match is a review trigger, not automatic proof of a problem. Documentation-onl
 
 ## Publication Checklist
 
-Before publishing or merging a Version 3 batch:
+Before publishing or merging a Version 4 batch:
 
 - [ ] No passwords, tokens, keys, or recovery codes are present.
 - [ ] Exact internal addresses have been removed unless explicitly approved.
@@ -328,3 +328,8 @@ Before publishing a detail, ask:
 > Does an external reader need this exact value to understand my technical skill or the system design?
 
 When the answer is no, keep the exact value private and publish only the technical meaning.
+
+
+## V4 companion rule
+
+The portfolio receives only sanitized files. The private blueprint may add non-secret operational notes under `private/`; that directory must never be exported publicly. The separate existing private operations repository remains untouched. Raw DNS records, client history, SSIDs, detailed rule maps, and access endpoints are excluded from public diagrams, metadata, and files. Never merge private Git history into the portfolio.
