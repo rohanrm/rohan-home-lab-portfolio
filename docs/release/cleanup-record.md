@@ -19,10 +19,14 @@ Original decisions and reusable templates remain useful and were retained. No cr
 
 ## Branch lifecycle
 
-`main` is the live branch in each repository. A one-time workflow preserves each named old branch tip as a tag under `archive/`, verifies it is an ancestor of main, and only then deletes that exact branch using an expected-head lease. It rejects moved heads, unmerged commits and conflicting existing archive tags.
+`main` is the live branch in each repository. The one-time workflow saved each named old branch tip as a tag under `archive/`, verified it was an ancestor of main, and deleted only that branch with an expected-head lease. Its checks rejected moved heads, unmerged commits and conflicting existing archive tags.
 
-The workflow is removed after successful remote verification. Archive tags preserve historical lookup without keeping additional live branches. Git history itself is retained.
+The temporary workflow and script were removed after successful remote verification. Archive tags preserve historical lookup without keeping additional live branches. Git history itself is retained.
 
 ## Validation
 
-The public and private-aware V4 audits check links, metadata, text/SVG privacy patterns, asset structure and whitespace. Remote GitHub Actions results and branch/tag inventories must be verified after cleanup; archive presence is not a runtime homelab test.
+The public and private-aware V4 audits check links, metadata, text/SVG privacy patterns, asset structure and whitespace. Both repository branch/tag inventories were verified after cleanup. Local audits passed for 60 public and 63 private Markdown files plus seven SVG assets each. The archive workflow completed successfully; the final documentation-only commit has its own audit run. Archive presence is not a runtime homelab test.
+
+## Archived branch tips
+
+The public repository retains `archive/docs-v4-redesign-2026-10-02`. The private blueprint retains both `archive/docs-v3-redesign-2026-10-02` and `archive/docs-v4-redesign-2026-10-02`. Tags are historical snapshots rather than live branches. Both repositories have only `main`.
